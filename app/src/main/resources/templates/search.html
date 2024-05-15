@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/path/to/layout.html}">
+
+<head>
+    <meta charset="ISO-8859-1">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Flight</title>
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600"
+          rel="stylesheet" type="text/css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg bg-primary">
+    <div class="container-fluid">
+        <a class="navbar-brand text-light" href="/">Brownfield Airlines</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link text-light" aria-current="page" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="/checkin">Checkin</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="/flight">Flights</a>
+                </li>
+            </ul>
+            <div sec:authorize="isAuthenticated()" class="d-flex justify-content-between align-items-center gap-2">
+                    <div sec:authentication="name" class="text-light text-decoration-none"></div>
+                    <a class="text-light text-decoration-none" href="/logout">Logout</a>
+            </div>
+            <div sec:authorize="isAnonymous()" class="d-flex justify-content-between align-items-center gap-2">
+                        <div class="text-light text-decoration-none">Guest</div>
+                        <a class="text-light text-decoration-none" href="/login">Login</a>
+            </div>
+        </div>
+    </div>
+</nav>
+<br><br>
+<main class="my-form" >
+    <div class="container align-center col-sm-8">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <div class="card border-light w-auto special-card">
+                    <div class="card-header border-light text-center">Search Flights</div>
+                    <div class="card-body">
+                        <form name="searchFlightsForm"
+                              method="post"
+                              role="form"
+                              th:method="POST"
+                              th:action="@{/api/v1/flight/find}"
+                              th:object="${flight}"
+                        >
+                            <div class="row searchForm">
+                                <div class="col-lg-12">
+                                    <div class="row">
+                                        <div class="col-md-2 col-sm-3 col-sm-12 ">
+                                            <input
+                                                    class="form-control"
+                                                    id="origin"
+                                                    name="origin"
+                                                    th:field="*{origin}"
+                                                    placeholder="Origin"
+                                                    type="text"
+                                            />
+                                        </div>
+                                        <div class="col-sm-2 col-md-3 col-sm-12">
+                                            <input
+                                                    class="form-control"
+                                                    id="destination"
+                                                    name="destination"
+                                                    th:field="*{destination}"
+                                                    placeholder="Destination"
+                                                    type="text"
+                                            />
+                                        </div>
+                                        <div class="col-sm-2 col-md-3 col-sm-12 ">
+                                            <input type="date" id="date"
+                                                   class="form-control search-slt" placeholder="Travel Date"
+                                                   th:field="*{date}"
+                                            >
+                                        </div>
+                                       <br><br><br><br>
+                                        <div class="col-sm-2 col-md-3 col-sm-12">
+                                            <button type="submit" class="btn btn-primary"
+                                                   >Search Flight</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Signup</title>
+
+    <script defer type="text/javascript" th:src="@{/js/register.js}"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg bg-primary">
+    <div class="container-fluid">
+        <a class="navbar-brand text-light display-1" th:href="@{/}">Brownfield Airlines</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link text-light lead" aria-current="page" th:href="@{/login}">Login</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<br /><br /><br />
+<div class="container">
+    <div class="row col-md-6 offset-md-3">
+        <div class="card">
+            <div class="mb-3 mt-3">
+                <h4 class="text-center fw-normal">Sign Up</h4>
+            </div>
+            <div th:if="${param.error}">
+                <div class="alert alert-danger">
+                    Something went wrong. Please try again!
+                </div>
+            </div>
+            <div class="card-body">
+                <form class="reg_form">
+                    <div class="row row-cols-2">
+                        <div class="form-group mb-3">
+                            <label class="form-label">First Name</label>
+                            <input
+                                    class="form-control"
+                                    id="firstName"
+                                    name="firstName"
+                                    placeholder="Enter first name"
+                                    type="text"
+                                    required
+                            />
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label class="form-label">Last Name</label>
+                            <input
+                                    class="form-control"
+                                    id="lastName"
+                                    name="lastName"
+                                    placeholder="Enter last name"
+                                    type="text"
+                                    required
+
+                            />
+
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label class="form-label">Email</label>
+                            <input
+                                    class="form-control"
+                                    id="email"
+                                    name="email"
+                                    placeholder="Enter email address"
+                                    type="email"
+                                    required
+
+                            />
+
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label class="form-label">Phone</label>
+                            <input
+                                    class="form-control"
+                                    id="phone"
+                                    name="phone"
+                                    placeholder="Enter phone"
+                                    type="number"
+                                    required
+
+                            />
+
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label class="form-label">Password</label>
+                            <input
+                                    class="form-control"
+                                    id="password"
+                                    name="password"
+                                    placeholder="*****"
+                                    type="password"
+                                    required
+
+                            />
+
+                        </div>
+                        <div class="form-group mb-3">
+                            <label class="form-label">Confirm Password</label>
+                            <input
+                                    class="form-control"
+                                    id="confirm-password"
+                                    name="confirm-password"
+                                    placeholder="*****"
+                                    type="password"
+                                    required
+
+                            />
+
+                        </div>
+                    </div>
+                    <div class="form-group mb-3 text-center">
+                        <button class="reg_btn btn btn-primary " type="submit">Register</button>
+                    </div>
+                    <div class="text-center">
+                        <p>Already registered? <a th:href="@{/login}">Login here</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

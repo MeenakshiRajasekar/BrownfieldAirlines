@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE">Brownfield Airlines</title><!-- define title in your page template and it will be added too your app name, e.g. 'Home - My App' -->
+</head>
+<body>
+<nav class="navbar navbar-expand-lg bg-primary">
+    <div class="container-fluid">
+        <a class="navbar-brand text-light" href="/">Brownfield Airlines</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link text-light" aria-current="page" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="/checkin">Checkin</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="/flight">Flights</a>
+                </li>
+            </ul>
+            <div sec:authorize="isAuthenticated()" class="d-flex justify-content-between align-items-center gap-2">
+                <div sec:authentication="name" class="text-light text-decoration-none"></div>
+                <a class="text-light text-decoration-none" href="/logout">Logout</a>
+            </div>
+            <div sec:authorize="isAnonymous()" class="d-flex justify-content-between align-items-center gap-2">
+                <div class="text-light text-decoration-none">Guest</div>
+                <a class="text-light text-decoration-none" href="/login">Login</a>
+            </div>
+        </div>
+    </div>
+</nav>
+<section layout:fragment="content">
+</section>
+</body>
+</html>
